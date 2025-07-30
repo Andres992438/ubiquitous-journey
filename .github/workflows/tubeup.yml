@@ -48,6 +48,8 @@ jobs:
       run: |
         printf "%s\n%s\n" "$IA_EMAIL" "$IA_PASSWORD" | ia configure
 
-    - name: Run tubeup
+    - name: Archive multiple videos
       run: |
-        tubeup "${{ github.event.inputs.url }}"
+       while IFS= read -r url; do
+       tubeup "$url"
+       done < urls.txt
